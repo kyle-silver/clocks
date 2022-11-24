@@ -3,7 +3,7 @@ import "./App.css";
 import styled, { keyframes } from "styled-components";
 import React from "react";
 
-const WheelRotationKeyframes = keyframes`
+const SecondsWheelKeyframes = keyframes`
   ${new Array(60)
     .fill(0)
     .map((_, i) => {
@@ -15,17 +15,26 @@ const WheelRotationKeyframes = keyframes`
   100% { transform: rotate(360deg) }
 `;
 
+const LinearWheelKeyframes = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
 const SecondsWheelRotation = styled.div`
-  animation: ${WheelRotationKeyframes} 60s
-    cubic-bezier(0.6, -0.28, 0.735, 0.045) infinite;
+  animation: ${SecondsWheelKeyframes} 60s cubic-bezier(0.6, -0.28, 0.735, 0.045)
+    infinite;
 `;
 
 const MinuteWheelRotation = styled.div`
-  animation: ${WheelRotationKeyframes} 3600s linear infinite;
+  animation: ${LinearWheelKeyframes} 3600s linear infinite;
 `;
 
 const HourWheelRotation = styled.div`
-  animation: ${WheelRotationKeyframes} calc(60 * 60 * 12) s linear infinite;
+  animation: ${LinearWheelKeyframes} 43200s linear infinite;
 `;
 
 const SecondsElement: React.FC<{ value: number; date: Date }> = ({
@@ -120,7 +129,9 @@ const HoursElement: React.FC<{ value: number; date: Date }> = ({
   };
   return (
     <div className="clock-element" key={`seconds-${value}`} style={style}>
-      <div className="hour-number">{value.toFixed(0).padStart(2, "\xa0")}</div>
+      <div className="hour-number">
+        {value.toFixed(0).padStart(2, "\u2007")}
+      </div>
     </div>
   );
 };

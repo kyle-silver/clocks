@@ -3,10 +3,23 @@
 .clock {
   margin: 0;
   position: absolute;
-  top: 40%;
+  top: 47%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: "Raleway", sans-serif;
+  transform: scale(2);
+}
+
+@media screen and (max-width: 760px), (max-height: 760px) {
+  .clock {
+    transform: scale(1.5);
+  }
+}
+
+@media screen and (max-width: 580px), (max-height: 580px) {
+  .clock {
+    transform: scale(1);
+  }
 }
 
 .clock-element {
@@ -40,7 +53,8 @@
 
 .hand {
   height: 2px;
-  width: 200px;
+  border-radius: 1px;
+  width: 185px;
   background: red;
   position: absolute;
   top: calc(50% + 3.5px);
