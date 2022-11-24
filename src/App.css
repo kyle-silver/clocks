@@ -9,10 +9,8 @@
   font-family: "Raleway", sans-serif;
 }
 
-.seconds-element {
+.clock-element {
   position: absolute;
-  top: 50%;
-  left: 50%;
   width: 2em;
   height: 0.5em;
   text-align: left;
@@ -30,4 +28,21 @@
   background: black;
   position: absolute;
   top: 50%;
+}
+
+.hour-wheel {
+  font-size: 30pt;
+}
+
+.hour-number {
+  margin-top: -24px;
+}
+
+.hand {
+  height: 2px;
+  width: 200px;
+  background: red;
+  position: absolute;
+  top: calc(50% + 3.5px);
+  right: 100%;
 }
