@@ -13,4 +13,21 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 2em;
+  height: 0.5em;
+  text-align: left;
+  transform-origin: top left;
+}
+
+.number {
+  margin-top: -7.5px;
+}
+
+.tick {
+  height: 0.5px;
+  width: 5px;
+  margin-left: 1.5px;
+  background: black;
+  position: absolute;
+  top: 50%;
 }

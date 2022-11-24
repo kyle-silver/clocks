@@ -12,6 +12,7 @@ const WheelRotationKeyframes = keyframes`
       return `${percent}% { transform: rotate(${rotation}deg) }`;
     })
     .join(" ")}
+  100% { transform: rotate(360deg) }
 `;
 
 const WheelRotation = styled.div`
@@ -28,20 +29,27 @@ const SecondsElement: React.FC<{ value: number; date: Date }> = ({
   const baseRotation = (60 - value) * (360 / 60);
   const rotation = baseRotation + offset;
   const style = {
-    transform: `rotate(${rotation}deg) translate(-60px)`,
+    transform: `rotate(${rotation}deg) translate(-90px)`,
   };
+  const element =
+    value % 5 === 0 ? (
+      <div className="number">{value.toFixed(0).padStart(2, "0")}</div>
+    ) : (
+      <div className="tick" />
+    );
   return (
-    <span className="seconds-element" key={`seconds-${value}`} style={style}>
-      {value.toFixed(0).padStart(2, "0")}
-    </span>
+    <div className="seconds-element" key={`seconds-${value}`} style={style}>
+      {/* {value.toFixed(0).padStart(2, "0")} */}
+      {element}
+    </div>
   );
 };
 
 const SecondsWheel: React.FC<{ date: Date }> = ({ date }) => {
-  const elements = Array(12)
+  const elements = Array(60)
     .fill(0)
     .map((_, index) => {
-      return <SecondsElement value={index * 5} date={date} />;
+      return <SecondsElement value={index} date={date} />;
     });
   return (
     <div className="seconds-wheel">
