@@ -3,11 +3,44 @@ import "./App.css";
 import styled, { keyframes } from "styled-components";
 import React from "react";
 
+class Rotations {
+  _seconds: number;
+  _minutes: number;
+  _hours: number;
+
+  constructor(date: Date) {
+    const h = date.getHours();
+    const m = date.getMinutes();
+    const s = date.getSeconds();
+    this._seconds = s;
+    this._minutes = m + s / 60;
+    this._hours = h + m / 60 + s / 3600;
+  }
+
+  seconds(value: number): number {
+    const offset = this._seconds * (360 / 60);
+    const baseRotation = (60 - value) * (360 / 60);
+    return baseRotation + offset;
+  }
+
+  minutes(value: number): number {
+    const offset = this._minutes * (360 / 60);
+    const baseRotation = (60 - value) * (360 / 60);
+    return baseRotation + offset;
+  }
+
+  hours(value: number): number {
+    const offset = this._hours * (360 / 60) * 5;
+    const baseRotation = (60 - value) * (360 / 60) * 5;
+    return baseRotation + offset;
+  }
+}
+
 const SecondsWheelKeyframes = keyframes`
   ${new Array(60)
     .fill(0)
     .map((_, i) => {
-      var percent = ((i * 100) / 60).toFixed(2);
+      var percent: string = ((i * 100) / 60).toFixed(2);
       var rotation = 6 * i;
       return `${percent}% { transform: rotate(${rotation}deg) }`;
     })
@@ -25,8 +58,7 @@ const LinearWheelKeyframes = keyframes`
 `;
 
 const SecondsWheelRotation = styled.div`
-  animation: ${SecondsWheelKeyframes} 60s cubic-bezier(0.6, -0.28, 0.735, 0.045)
-    infinite;
+  animation: ${SecondsWheelKeyframes} 60s cubic-bezier(0.6, -0.28, 0.735, 0.045) infinite;
 `;
 
 const MinuteWheelRotation = styled.div`
@@ -37,35 +69,33 @@ const HourWheelRotation = styled.div`
   animation: ${LinearWheelKeyframes} 43200s linear infinite;
 `;
 
-const SecondsElement: React.FC<{ value: number; date: Date }> = ({
-  value,
-  date,
-}) => {
-  const seconds = date.getSeconds();
-  const offset = seconds * (360 / 60);
-  const baseRotation = (60 - value) * (360 / 60);
-  const rotation = baseRotation + offset;
+interface ElementProps {
+  value: number;
+  rotations: Rotations;
+}
+
+interface WheelProps {
+  rotations: Rotations;
+}
+
+const SecondsElement: React.FC<ElementProps> = ({ value, rotations }) => {
+  const rotation = rotations.seconds(value);
   const style = {
     transform: `rotate(${rotation}deg) translate(-90px)`,
   };
-  const element =
-    value % 5 === 0 ? (
-      <div className="number">{value.toFixed(0).padStart(2, "0")}</div>
-    ) : (
-      <div className="tick" />
-    );
   return (
     <div className="clock-element" key={`seconds-${value}`} style={style}>
-      {element}
+      {value % 5 === 0 && <div className="number">{value.toFixed(0).padStart(2, "0")}</div>}
+      {value % 5 !== 0 && <div className="tick" />}
     </div>
   );
 };
 
-const SecondsWheel: React.FC<{ date: Date }> = ({ date }) => {
+const SecondsWheel: React.FC<WheelProps> = ({ rotations }) => {
   const elements = Array(60)
     .fill(0)
     .map((_, index) => {
-      return <SecondsElement value={index} date={date} />;
+      return <SecondsElement value={index} rotations={rotations} />;
     });
   return (
     <div className="clock-wheel">
@@ -74,37 +104,24 @@ const SecondsWheel: React.FC<{ date: Date }> = ({ date }) => {
   );
 };
 
-const MinutesElement: React.FC<{ value: number; date: Date }> = ({
-  value,
-  date,
-}) => {
-  const minutes = date.getMinutes();
-  const seconds = date.getSeconds();
-  const time = minutes + seconds / 60;
-  const offset = time * (360 / 60);
-  const baseRotation = (60 - value) * (360 / 60);
-  const rotation = baseRotation + offset;
+const MinutesElement: React.FC<ElementProps> = ({ value, rotations }) => {
+  const rotation = rotations.minutes(value);
   const style = {
     transform: `rotate(${rotation}deg) translate(-125px)`,
   };
-  const element =
-    value % 5 === 0 ? (
-      <div className="number">{value.toFixed(0).padStart(2, "0")}</div>
-    ) : (
-      <div className="tick" />
-    );
   return (
     <div className="clock-element" key={`seconds-${value}`} style={style}>
-      {element}
+      {value % 5 === 0 && <div className="number">{value.toFixed(0).padStart(2, "0")}</div>}
+      {value % 5 !== 0 && <div className="tick" />}
     </div>
   );
 };
 
-const MinuteWheel: React.FC<{ date: Date }> = ({ date }) => {
+const MinuteWheel: React.FC<WheelProps> = ({ rotations }) => {
   const elements = Array(60)
     .fill(0)
     .map((_, index) => {
-      return <MinutesElement value={index} date={date} />;
+      return <MinutesElement value={index} rotations={rotations} />;
     });
   return (
     <div className="minute-wheel">
@@ -113,34 +130,23 @@ const MinuteWheel: React.FC<{ date: Date }> = ({ date }) => {
   );
 };
 
-const HoursElement: React.FC<{ value: number; date: Date }> = ({
-  value,
-  date,
-}) => {
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const seconds = date.getSeconds();
-  const time = hours + minutes / 60 + seconds / 3600;
-  const offset = time * (360 / 60) * 5;
-  const baseRotation = (60 - value) * (360 / 60) * 5;
-  const rotation = baseRotation + offset;
+const HoursElement: React.FC<ElementProps> = ({ value, rotations }) => {
+  const rotation = rotations.hours(value);
   const style = {
     transform: `rotate(${rotation}deg) translate(-180px)`,
   };
   return (
     <div className="clock-element" key={`seconds-${value}`} style={style}>
-      <div className="hour-number">
-        {value.toFixed(0).padStart(2, "\u2007")}
-      </div>
+      <div className="hour-number">{value.toFixed(0).padStart(2, "\u2007")}</div>
     </div>
   );
 };
 
-const HourWheel: React.FC<{ date: Date }> = ({ date }) => {
+const HourWheel: React.FC<WheelProps> = ({ rotations }) => {
   const elements = Array(12)
     .fill(0)
     .map((_, index) => {
-      return <HoursElement value={index + 1} date={date} />;
+      return <HoursElement value={index + 1} rotations={rotations} />;
     });
   return (
     <div className="hour-wheel">
@@ -151,11 +157,12 @@ const HourWheel: React.FC<{ date: Date }> = ({ date }) => {
 
 function App() {
   const date = new Date();
+  const rotations = new Rotations(date);
   return (
     <div className="clock">
-      <SecondsWheel date={date} />
-      <MinuteWheel date={date} />
-      <HourWheel date={date} />
+      <SecondsWheel rotations={rotations} />
+      <MinuteWheel rotations={rotations} />
+      <HourWheel rotations={rotations} />
       <div className="hand" />
     </div>
   );
