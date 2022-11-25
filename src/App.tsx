@@ -1,4 +1,4 @@
-import { Timescale } from "./Timescale";
+import { Timescale } from "./Timescale/Timescale";
 
 function App() {
   return <Timescale />;

@@ -1,7 +1,7 @@
 import "./Timescale.css";
 
 import styled, { keyframes } from "styled-components";
-import React from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 
 class Rotations {
   _seconds: number;
@@ -155,6 +155,57 @@ const HourWheel: React.FC<WheelProps> = ({ rotations }) => {
   );
 };
 
+interface SliderState {
+  meridian: string;
+  css: CSSProperties;
+}
+
+const AM_TO_PM = {
+  animation: "slide-to-pm 0.5s cubic-bezier(0.82, -0.02, 0.41, 1.22)",
+  transform: "translate(2.9ch)",
+};
+
+const PM_TO_AM = {
+  animation: "slide-to-am 0.5s cubic-bezier(0.82, -0.02, 0.41, 1.22)",
+  transform: "translate(0ch)",
+};
+
+const Meridian: React.FC<{ date: Date }> = ({ date }) => {
+  // keep track of the hour
+  const meridian = date.getHours() >= 12 ? "PM" : "AM";
+  const [state, setState] = useState<SliderState>({
+    meridian,
+    css: meridian === "PM" ? { transform: "translate(0ch)" } : { transform: "translate(2.9ch" },
+  });
+  // swap AM and PM
+  useEffect(() => {
+    let interval = setInterval(() => {
+      const updated = new Date().getHours() >= 12 ? "PM" : "AM";
+      if (updated !== state.meridian) {
+        console.log(`updating from ${state} to ${updated}`);
+        setState({
+          meridian: updated,
+          css: updated === "AM" ? PM_TO_AM : AM_TO_PM,
+        });
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  });
+  return (
+    <div className="meridian">
+      <div className="indicator" id="am">
+        AM
+      </div>
+      <div className="indicator" id="pm">
+        PM
+      </div>
+      <div className="slider" style={state.css}>
+        AM
+      </div>
+    </div>
+  );
+};
+
 export const Timescale: React.FC<{}> = () => {
   const date = new Date();
   const rotations = new Rotations(date);
@@ -164,6 +215,7 @@ export const Timescale: React.FC<{}> = () => {
       <MinuteWheel rotations={rotations} />
       <HourWheel rotations={rotations} />
       <div className="hand" />
+      <Meridian date={date} />
     </div>
   );
 };
