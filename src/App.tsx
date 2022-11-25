@@ -81,7 +81,7 @@ interface WheelProps {
 const SecondsElement: React.FC<ElementProps> = ({ value, rotations }) => {
   const rotation = rotations.seconds(value);
   const style = {
-    transform: `rotate(${rotation}deg) translate(-90px)`,
+    transform: `rotate(${rotation}deg) translate(var(--seconds-wheel-radius))`,
   };
   return (
     <div className="clock-element" key={`seconds-${value}`} style={style}>
@@ -107,7 +107,7 @@ const SecondsWheel: React.FC<WheelProps> = ({ rotations }) => {
 const MinutesElement: React.FC<ElementProps> = ({ value, rotations }) => {
   const rotation = rotations.minutes(value);
   const style = {
-    transform: `rotate(${rotation}deg) translate(-125px)`,
+    transform: `rotate(${rotation}deg) translate(var(--minute-wheel-radius))`,
   };
   return (
     <div className="clock-element" key={`seconds-${value}`} style={style}>
@@ -133,7 +133,7 @@ const MinuteWheel: React.FC<WheelProps> = ({ rotations }) => {
 const HoursElement: React.FC<ElementProps> = ({ value, rotations }) => {
   const rotation = rotations.hours(value);
   const style = {
-    transform: `rotate(${rotation}deg) translate(-180px)`,
+    transform: `rotate(${rotation}deg) translate(var(--hour-wheel-radius))`,
   };
   return (
     <div className="clock-element" key={`seconds-${value}`} style={style}>
