@@ -11,16 +11,6 @@
   --hand-length: 375px;
 }
 
-.clock {
-  margin: 0;
-  position: absolute;
-  top: 47%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "Raleway", sans-serif;
-  font-size: var(--inner-wheel-font-size);
-}
-
 @media screen and (max-width: 780px), (max-height: 780px) {
   :root {
     --inner-wheel-font-size: calc(24pt * 0.66);
@@ -45,6 +35,16 @@
     --hand-thickness: 2px;
     --hand-length: calc(-1 * var(--hour-wheel-radius) + 5px);
   }
+}
+
+.clock {
+  margin: 0;
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Raleway", sans-serif;
+  font-size: var(--inner-wheel-font-size);
 }
 
 .clock-element {
