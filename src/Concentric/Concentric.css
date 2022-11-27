@@ -1,0 +1,72 @@
+:root {
+  --second-wheel-displacement: calc(var(--hour-wheel-radius) * 0.28);
+  --minute-wheel-displacement: calc(var(--hour-wheel-radius) * 0.13);
+  /* --hand-radius: calc(var(--hour-wheel-radius) * 0.7) */
+  --hand-radius: 0;
+  --concentric-hand-length: 100px;
+}
+
+.hour-number {
+  text-align: center;
+}
+
+.minute-wheel-wrapper {
+  animation: minute-wheel-revolution 43200s linear infinite;
+}
+
+.seconds-wheel-wrapper {
+  animation: second-wheel-revolution 43200s linear infinite;
+}
+
+.seconds-wheel {
+  animation: wheel-rotation 60s linear infinite;
+}
+
+.minute-wheel {
+  animation: wheel-rotation 3600s linear infinite;
+}
+
+.concentric-hand {
+  height: var(--hand-thickness);
+  border-radius: 3px;
+  width: var(--concentric-hand-length);
+  background: red;
+  position: absolute;
+  animation: hand 60s linear infinite;
+}
+
+@keyframes hand {
+  from {
+    transform: rotate(90deg) translate(var(--hand-radius));
+  }
+  to {
+    transform: rotate(450deg) translate(var(--hand-radius));
+  }
+}
+
+@keyframes minute-wheel-revolution {
+  from {
+    transform: rotate(0deg) translateY(var(--minute-wheel-displacement));
+  }
+  to {
+    transform: rotate(360deg) translateY(var(--minute-wheel-displacement));
+  }
+}
+
+@keyframes second-wheel-revolution {
+  from {
+    transform: rotate(0deg) translateY(var(--second-wheel-displacement));
+  }
+  to {
+    transform: rotate(360deg) translateY(var(--second-wheel-displacement));
+  }
+}
+
+@keyframes wheel-rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}

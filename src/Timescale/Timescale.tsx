@@ -1,9 +1,10 @@
 import "./Timescale.css";
+import "./Scaling.css";
 
 import styled, { keyframes } from "styled-components";
 import React, { CSSProperties, useEffect, useState } from "react";
 
-class Rotations {
+export class Rotations {
   _seconds: number;
   _minutes: number;
   _hours: number;

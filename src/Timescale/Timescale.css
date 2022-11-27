@@ -1,42 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap");
 
-:root {
-  --inner-wheel-font-size: 24pt;
-  --hour-wheel-font-size: 60pt;
-  --seconds-wheel-radius: -180px;
-  --minute-wheel-radius: -246px;
-  --hour-wheel-radius: -360px;
-  --tick-width: 20px;
-  --hand-thickness: 3px;
-  --hand-length: 375px;
-}
-
-@media screen and (max-width: 780px), (max-height: 780px) {
-  :root {
-    --inner-wheel-font-size: calc(24pt * 0.66);
-    --hour-wheel-font-size: calc(60pt * 0.66);
-    --tick-width: calc(20px * 0.66);
-    --seconds-wheel-radius: calc(-180px * 0.66);
-    --minute-wheel-radius: calc(-246px * 0.66);
-    --hour-wheel-radius: calc(-360px * 0.66);
-    --hand-thickness: 2.5px;
-    --hand-length: calc(-1 * var(--hour-wheel-radius) + 10px);
-  }
-}
-
-@media screen and (max-width: 550px), (max-height: 550px) {
-  :root {
-    --inner-wheel-font-size: calc(24pt * 0.5);
-    --hour-wheel-font-size: calc(60pt * 0.5);
-    --tick-width: calc(20px * 0.5);
-    --seconds-wheel-radius: calc(-180px * 0.5);
-    --minute-wheel-radius: calc(-246px * 0.5);
-    --hour-wheel-radius: calc(-360px * 0.5);
-    --hand-thickness: 2px;
-    --hand-length: calc(-1 * var(--hour-wheel-radius) + 5px);
-  }
-}
-
 .clock {
   margin: 0;
   position: absolute;
