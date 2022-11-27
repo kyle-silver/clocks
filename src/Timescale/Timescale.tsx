@@ -41,7 +41,7 @@ const SecondsWheelKeyframes = keyframes`
     .fill(0)
     .map((_, i) => {
       var percent: string = ((i * 100) / 60).toFixed(2);
-      var rotation = 6 * i;
+      var rotation: number = 6 * i;
       return `${percent}% { transform: rotate(${rotation}deg) }`;
     })
     .join(" ")}
