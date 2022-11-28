@@ -1,13 +1,13 @@
 :root {
   --second-wheel-displacement: calc(var(--hour-wheel-radius) * 0.28);
   --minute-wheel-displacement: calc(var(--hour-wheel-radius) * 0.13);
-  /* --hand-radius: calc(var(--hour-wheel-radius) * 0.7) */
-  --hand-radius: 0;
-  --concentric-hand-length: 100px;
+  --hand-radius: calc(var(--hour-wheel-radius) * 0.95);
+  --concentric-hand-length: 150px;
 }
 
 .hour-number {
   text-align: center;
+  margin-top: -1.1ex;
 }
 
 .minute-wheel-wrapper {
@@ -19,11 +19,11 @@
 }
 
 .seconds-wheel {
-  animation: wheel-rotation 60s linear infinite;
+  animation: wheel-rotation calc(60s) linear infinite;
 }
 
 .minute-wheel {
-  animation: wheel-rotation 3600s linear infinite;
+  animation: wheel-rotation calc(3600s) linear infinite;
 }
 
 .concentric-hand {
@@ -32,7 +32,8 @@
   width: var(--concentric-hand-length);
   background: red;
   position: absolute;
-  animation: hand 60s linear infinite;
+  transform-origin: top left;
+  animation: hand 43200s linear infinite;
 }
 
 @keyframes hand {
