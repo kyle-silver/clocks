@@ -1,9 +1,10 @@
 :root {
+  --second-wheel-font-size: 16pt;
   --inner-wheel-font-size: 24pt;
   --hour-wheel-font-size: 40pt;
   --seconds-wheel-radius: -180px;
   --minute-wheel-radius: -290px;
-  --hour-wheel-radius: -430px;
+  --hour-wheel-radius: -400px;
   --tick-width: 20px;
   --hand-thickness: 3px;
   --hand-length: 375px;

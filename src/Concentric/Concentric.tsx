@@ -1,4 +1,3 @@
-import "../Timescale/Timescale.css";
 import "./Concentric.css";
 import "./Scaling.css";
 
@@ -7,9 +6,16 @@ const SecondsElement: React.FC<{ value: number }> = ({ value }) => {
   const style = {
     transform: `rotate(${rotation}deg) translate(var(--seconds-wheel-radius))`,
   };
+  const orientation = {
+    // transform: `rotate(-90deg) `,
+  };
   return (
     <div className="clock-element" key={`seconds-${value}`} style={style}>
-      {value % 5 === 0 && <div className="number">{value.toFixed(0).padStart(2, "0")}</div>}
+      {value % 5 === 0 && (
+        <div className="seconds-number" style={orientation}>
+          {value.toFixed(0).padStart(2, "0")}
+        </div>
+      )}
       {value % 5 !== 0 && <div className="tick" />}
     </div>
   );
@@ -33,9 +39,16 @@ const MinutesElement: React.FC<{ value: number }> = ({ value }) => {
   const style = {
     transform: `rotate(${rotation}deg) translate(var(--minute-wheel-radius))`,
   };
+  const orientation = {
+    // transform: `rotate(-90deg) `,
+  };
   return (
     <div className="clock-element" key={`seconds-${value}`} style={style}>
-      {value % 5 === 0 && <div className="number">{value.toFixed(0).padStart(2, "0")}</div>}
+      {value % 5 === 0 && (
+        <div className="number" style={orientation}>
+          {value.toFixed(0).padStart(2, "0")}
+        </div>
+      )}
       {value % 5 !== 0 && <div className="tick" />}
     </div>
   );
@@ -69,6 +82,7 @@ const HourElement: React.FC<{ value: number }> = ({ value }) => {
           {value === 60 ? 12 : (value / 5).toFixed(0)}
         </div>
       )}
+      {/* {value % 5 !== 0 && <div className="tick" />} */}
     </div>
   );
 };

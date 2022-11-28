@@ -1,13 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap");
+
 :root {
-  --second-wheel-displacement: calc(var(--hour-wheel-radius) * 0.28);
-  --minute-wheel-displacement: calc(var(--hour-wheel-radius) * 0.13);
-  --hand-radius: calc(var(--hour-wheel-radius) * 0.95);
-  --concentric-hand-length: 150px;
+  --second-wheel-displacement: calc(var(--hour-wheel-radius) * 0.33);
+  --minute-wheel-displacement: calc(var(--hour-wheel-radius) * 0.16);
+  --hand-radius: calc(calc(var(--hour-wheel-radius) * 1.05) - 10px);
+  --concentric-hand-length: calc(var(--hour-wheel-radius) * -0.4);
+}
+
+.clock {
+  margin: 0;
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Raleway", sans-serif;
+  font-size: var(--inner-wheel-font-size);
+  display: block;
+}
+
+.clock-element {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2em;
+  height: 2em;
+  margin: -1em;
+  text-align: center;
+  line-height: 2em;
+}
+
+.tick {
+  height: 0.5px;
+  width: var(--tick-width);
+  margin-left: 0.7em;
+  background: black;
+  position: absolute;
+  top: 50%;
 }
 
 .hour-number {
-  text-align: center;
-  margin-top: -1.1ex;
+  font-size: var(--hour-wheel-font-size);
 }
 
 .minute-wheel-wrapper {
