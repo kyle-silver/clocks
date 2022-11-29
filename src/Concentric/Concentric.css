@@ -5,6 +5,7 @@
   --minute-wheel-displacement: calc(var(--hour-wheel-radius) * 0.16);
   --hand-radius: calc(calc(var(--hour-wheel-radius) * 1.05) - 10px);
   --concentric-hand-length: calc(var(--hour-wheel-radius) * -0.4);
+  --tick-width: 20px;
 }
 
 .clock {
@@ -33,7 +34,7 @@
 .tick {
   height: 0.5px;
   width: var(--tick-width);
-  margin-left: 0.7em;
+  margin-left: 0.5em;
   background: black;
   position: absolute;
   top: 50%;
@@ -47,16 +48,16 @@
   animation: minute-wheel-revolution 43200s linear infinite;
 }
 
-.seconds-wheel-wrapper {
+/* .second-wheel-wrapper {
   animation: second-wheel-revolution 43200s linear infinite;
-}
+} */
 
-.seconds-wheel {
-  animation: wheel-rotation calc(60s) linear infinite;
+.second-wheel {
+  animation: wheel-rotation 60s linear infinite;
 }
 
 .minute-wheel {
-  animation: wheel-rotation calc(3600s) linear infinite;
+  animation: wheel-rotation 3600s linear infinite;
 }
 
 .concentric-hand {
@@ -66,7 +67,7 @@
   background: red;
   position: absolute;
   transform-origin: top left;
-  animation: hand 43200s linear infinite;
+  /* animation: hand 43200s linear infinite; */
 }
 
 @keyframes hand {

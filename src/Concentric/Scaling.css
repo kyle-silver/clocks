@@ -2,10 +2,10 @@
   --second-wheel-font-size: 16pt;
   --inner-wheel-font-size: 24pt;
   --hour-wheel-font-size: 40pt;
-  --seconds-wheel-radius: -180px;
+  --second-wheel-radius: -180px;
   --minute-wheel-radius: -290px;
   --hour-wheel-radius: -400px;
-  --tick-width: 20px;
+  --tick-width: 10px;
   --hand-thickness: 3px;
   --hand-length: 375px;
 }
@@ -15,7 +15,7 @@
     --inner-wheel-font-size: calc(24pt * 0.66);
     --hour-wheel-font-size: calc(40pt * 0.66);
     --tick-width: calc(20px * 0.66);
-    --seconds-wheel-radius: calc(-180px * 0.66);
+    --second-wheel-radius: calc(-180px * 0.66);
     --minute-wheel-radius: calc(-246px * 0.66);
     --hour-wheel-radius: calc(-360px * 0.66);
     --hand-thickness: 2.5px;
@@ -28,7 +28,7 @@
     --inner-wheel-font-size: calc(24pt * 0.5);
     --hour-wheel-font-size: calc(60pt * 0.5);
     --tick-width: calc(20px * 0.5);
-    --seconds-wheel-radius: calc(-180px * 0.5);
+    --second-wheel-radius: calc(-180px * 0.5);
     --minute-wheel-radius: calc(-246px * 0.5);
     --hour-wheel-radius: calc(-360px * 0.5);
     --hand-thickness: 2px;
