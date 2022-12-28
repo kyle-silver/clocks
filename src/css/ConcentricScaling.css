@@ -1,0 +1,36 @@
+:root {
+  --cc-second-wheel-font-size: 16pt;
+  --cc-inner-wheel-font-size: 24pt;
+  --cc-hour-wheel-font-size: 40pt;
+  --cc-second-wheel-radius: -175px;
+  --cc-minute-wheel-radius: -285px;
+  --cc-hour-wheel-radius: -400px;
+  --cc-tick-width: 10px;
+  --cc-hand-thickness: 3px;
+}
+
+@media screen and (max-width: 900px), (max-height: 900px) {
+  :root {
+    --cc-inner-wheel-font-size: calc(24pt * 0.66);
+    --cc-hour-wheel-font-size: calc(40pt * 0.66);
+    --cc-tick-width: calc(20px * 0.66);
+    --cc-second-wheel-radius: -126px;
+    --cc-minute-wheel-radius: calc(-246px * 0.82);
+    --cc-hour-wheel-radius: calc(-360px * 0.8);
+    --cc-hand-thickness: 2.5px;
+  }
+}
+
+@media screen and (max-width: 640px), (max-height: 640px) {
+  :root {
+    --cc-inner-wheel-font-size: calc(16pt * 0.5);
+    --cc-hour-wheel-font-size: calc(60pt * 0.4);
+    --cc-tick-width: calc(20px * 0.5);
+    --cc-second-wheel-radius: -70px;
+    --cc-minute-wheel-radius: -115px;
+    --cc-hour-wheel-radius: calc(-360px * 0.5);
+    --cc-hand-thickness: 2px;
+    --cc-tick-width: 5px;
+    --cc-concentric-hand-length: calc(var(--cc-hour-wheel-radius) * -0.4 + 10px);
+  }
+}

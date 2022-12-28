@@ -1,6 +1,3 @@
-import "./Timescale.css";
-import "./Scaling.css";
-
 import styled, { keyframes } from "styled-components";
 import React, { CSSProperties, useEffect, useState } from "react";
 
@@ -82,12 +79,12 @@ interface WheelProps {
 const SecondsElement: React.FC<ElementProps> = ({ value, rotations }) => {
   const rotation = rotations.seconds(value);
   const style = {
-    transform: `rotate(${rotation}deg) translate(var(--seconds-wheel-radius))`,
+    transform: `rotate(${rotation}deg) translate(var(--ts-seconds-wheel-radius))`,
   };
   return (
-    <div className="clock-element" key={`seconds-${value}`} style={style}>
-      {value % 5 === 0 && <div className="number">{value.toFixed(0).padStart(2, "0")}</div>}
-      {value % 5 !== 0 && <div className="tick" />}
+    <div className="ts-clock-element" key={`seconds-${value}`} style={style}>
+      {value % 5 === 0 && <div className="ts-number">{value.toFixed(0).padStart(2, "0")}</div>}
+      {value % 5 !== 0 && <div className="ts-tick" />}
     </div>
   );
 };
@@ -99,7 +96,7 @@ const SecondsWheel: React.FC<WheelProps> = ({ rotations }) => {
       return <SecondsElement value={index} rotations={rotations} />;
     });
   return (
-    <div className="clock-wheel">
+    <div className="ts-clock-wheel">
       <SecondsWheelRotation>{elements}</SecondsWheelRotation>
     </div>
   );
@@ -108,12 +105,12 @@ const SecondsWheel: React.FC<WheelProps> = ({ rotations }) => {
 const MinutesElement: React.FC<ElementProps> = ({ value, rotations }) => {
   const rotation = rotations.minutes(value);
   const style = {
-    transform: `rotate(${rotation}deg) translate(var(--minute-wheel-radius))`,
+    transform: `rotate(${rotation}deg) translate(var(--ts-minute-wheel-radius))`,
   };
   return (
-    <div className="clock-element" key={`seconds-${value}`} style={style}>
-      {value % 5 === 0 && <div className="number">{value.toFixed(0).padStart(2, "0")}</div>}
-      {value % 5 !== 0 && <div className="tick" />}
+    <div className="ts-clock-element" key={`seconds-${value}`} style={style}>
+      {value % 5 === 0 && <div className="ts-number">{value.toFixed(0).padStart(2, "0")}</div>}
+      {value % 5 !== 0 && <div className="ts-tick" />}
     </div>
   );
 };
@@ -125,7 +122,7 @@ const MinuteWheel: React.FC<WheelProps> = ({ rotations }) => {
       return <MinutesElement value={index} rotations={rotations} />;
     });
   return (
-    <div className="minute-wheel">
+    <div className="ts-minute-wheel">
       <MinuteWheelRotation>{elements}</MinuteWheelRotation>
     </div>
   );
@@ -134,11 +131,11 @@ const MinuteWheel: React.FC<WheelProps> = ({ rotations }) => {
 const HoursElement: React.FC<ElementProps> = ({ value, rotations }) => {
   const rotation = rotations.hours(value);
   const style = {
-    transform: `rotate(${rotation}deg) translate(var(--hour-wheel-radius))`,
+    transform: `rotate(${rotation}deg) translate(var(--ts-hour-wheel-radius))`,
   };
   return (
-    <div className="clock-element" key={`seconds-${value}`} style={style}>
-      <div className="hour-number">{value.toFixed(0).padStart(2, "\u2007")}</div>
+    <div className="ts-clock-element" key={`seconds-${value}`} style={style}>
+      <div className="ts-hour-number">{value.toFixed(0).padStart(2, "\u2007")}</div>
     </div>
   );
 };
@@ -150,7 +147,7 @@ const HourWheel: React.FC<WheelProps> = ({ rotations }) => {
       return <HoursElement value={index + 1} rotations={rotations} />;
     });
   return (
-    <div className="hour-wheel">
+    <div className="ts-hour-wheel">
       <HourWheelRotation>{elements}</HourWheelRotation>
     </div>
   );
@@ -193,14 +190,14 @@ const Meridian: React.FC<{ date: Date }> = ({ date }) => {
     return () => clearInterval(interval);
   });
   return (
-    <div className="meridian">
-      <div className="indicator" id="am">
+    <div className="ts-meridian">
+      <div className="ts-indicator" id="ts-am">
         AM
       </div>
-      <div className="indicator" id="pm">
+      <div className="ts-indicator" id="ts-pm">
         PM
       </div>
-      <div className="slider" style={state.css}>
+      <div className="ts-slider" style={state.css}>
         AM
       </div>
     </div>
@@ -211,11 +208,11 @@ export const Timescale: React.FC<{}> = () => {
   const date = new Date();
   const rotations = new Rotations(date);
   return (
-    <div className="clock">
+    <div className="ts-clock">
       <SecondsWheel rotations={rotations} />
       <MinuteWheel rotations={rotations} />
       <HourWheel rotations={rotations} />
-      <div className="hand" />
+      <div className="ts-hand" />
       <Meridian date={date} />
     </div>
   );

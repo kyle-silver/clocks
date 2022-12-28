@@ -1,6 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import "./Concentric.css";
-import "./Scaling.css";
 
 const SECONDS_IN_HOUR = 60 * 60;
 const SECONDS_IN_TWELVE_HOURS = SECONDS_IN_HOUR * 12;
@@ -84,10 +82,10 @@ const MinuteWheelRotationAnimation = styled.div`
 
 const HandKeyframes = (rotations: Rotations) => keyframes`
   from {
-    transform: rotate(${rotations.innerWheelRevolutionDegrees() + 90}deg) translate(var(--hand-radius));
+    transform: rotate(${rotations.innerWheelRevolutionDegrees() + 90}deg) translate(var(--cc-hand-radius));
   }
   to {
-    transform: rotate(${rotations.innerWheelRevolutionDegrees() + 90 + 360}deg) translate(var(--hand-radius));
+    transform: rotate(${rotations.innerWheelRevolutionDegrees() + 90 + 360}deg) translate(var(--cc-hand-radius));
   }
 `;
 
@@ -102,12 +100,12 @@ interface WheelProps {
 const SecondsElement: React.FC<{ value: number }> = ({ value }) => {
   const rotation = value * 6 + 90;
   const style = {
-    transform: `rotate(${rotation}deg) translate(var(--second-wheel-radius))`,
+    transform: `rotate(${rotation}deg) translate(var(--cc-second-wheel-radius))`,
   };
   return (
-    <div className="clock-element" key={`seconds-${value}`} style={style}>
-      {value % 5 === 0 && <div className="number">{value.toFixed(0).padStart(2, "0")}</div>}
-      {value % 5 !== 0 && <div className="tick" />}
+    <div className="cc-clock-element" key={`seconds-${value}`} style={style}>
+      {value % 5 === 0 && <div className="cc-number">{value.toFixed(0).padStart(2, "0")}</div>}
+      {value % 5 !== 0 && <div className="cc-tick" />}
     </div>
   );
 };
@@ -119,7 +117,7 @@ const SecondsWheel: React.FC<WheelProps> = ({ rotations }) => {
       return <SecondsElement value={index} />;
     });
   return (
-    <RevolutionAnimation rotations={rotations} translation={"--second-wheel-displacement"}>
+    <RevolutionAnimation rotations={rotations} translation={"--cc-second-wheel-displacement"}>
       <SecondWheelRotationAnimation rotations={rotations}>{elements}</SecondWheelRotationAnimation>
     </RevolutionAnimation>
   );
@@ -128,12 +126,12 @@ const SecondsWheel: React.FC<WheelProps> = ({ rotations }) => {
 const MinutesElement: React.FC<{ value: number }> = ({ value }) => {
   const rotation = value * 6 + 90;
   const style = {
-    transform: `rotate(${rotation}deg) translate(var(--minute-wheel-radius))`,
+    transform: `rotate(${rotation}deg) translate(var(--cc-minute-wheel-radius))`,
   };
   return (
-    <div className="clock-element" key={`seconds-${value}`} style={style}>
-      {value % 5 === 0 && <div className="number">{value.toFixed(0).padStart(2, "0")}</div>}
-      {value % 5 !== 0 && <div className="tick" />}
+    <div className="cc-clock-element" key={`seconds-${value}`} style={style}>
+      {value % 5 === 0 && <div className="cc-number">{value.toFixed(0).padStart(2, "0")}</div>}
+      {value % 5 !== 0 && <div className="cc-tick" />}
     </div>
   );
 };
@@ -145,7 +143,7 @@ const MinuteWheel: React.FC<WheelProps> = ({ rotations }) => {
       return <MinutesElement value={index} />;
     });
   return (
-    <RevolutionAnimation rotations={rotations} translation={"--minute-wheel-displacement"}>
+    <RevolutionAnimation rotations={rotations} translation={"--cc-minute-wheel-displacement"}>
       <MinuteWheelRotationAnimation rotations={rotations}>{elements}</MinuteWheelRotationAnimation>
     </RevolutionAnimation>
   );
@@ -154,15 +152,15 @@ const MinuteWheel: React.FC<WheelProps> = ({ rotations }) => {
 const HourElement: React.FC<{ value: number }> = ({ value }) => {
   const rotation = value * 6 + 90;
   const position = {
-    transform: `rotate(${rotation}deg) translate(var(--hour-wheel-radius))`,
+    transform: `rotate(${rotation}deg) translate(var(--cc-hour-wheel-radius))`,
   };
   const orientation = {
     transform: `rotate(${-rotation}deg) `,
   };
   return (
-    <div className="clock-element" key={`seconds-${value}`} style={position}>
+    <div className="cc-clock-element" key={`seconds-${value}`} style={position}>
       {value % 5 === 0 && (
-        <div className="hour-number" style={orientation}>
+        <div className="cc-hour-number" style={orientation}>
           {value === 60 ? 12 : (value / 5).toFixed(0)}
         </div>
       )}
@@ -176,19 +174,19 @@ const HourWheel: React.FC<{}> = () => {
     .map((_, index) => {
       return <HourElement value={index + 1} />;
     });
-  return <div className="hour-wheel">{elements}</div>;
+  return <div className="cc-hour-wheel">{elements}</div>;
 };
 
 export const Concentric: React.FC<{}> = () => {
   const date = new Date();
   const rotations = new Rotations(date);
   return (
-    <div className="clock">
+    <div className="cc-clock">
       <HourWheel />
       <MinuteWheel rotations={rotations} />
       <SecondsWheel rotations={rotations} />
       <HandAnimation rotations={rotations}>
-        <div className="concentric-hand" />
+        <div className="cc-concentric-hand" />
       </HandAnimation>
     </div>
   );
