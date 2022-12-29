@@ -1,9 +1,18 @@
 import { Concentric } from "./Concentric/Concentric";
 import { Timescale } from "./Timescale/Timescale";
-import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 
 import "./css/Concentric.css";
 import "./css/Timescale.css";
+
+/**
+ * The "homepage" for navigating between different clocks is the blog post on
+ * the statically-generated main site -- not part of this react app.
+ */
+function RedirectOnNotFound(): JSX.Element | null {
+  window.location.href = "https://kyle-silver.github.io/blog/clocks";
+  return null;
+}
 
 const router = createHashRouter([
   {
@@ -16,9 +25,7 @@ const router = createHashRouter([
   },
   {
     path: "*",
-    loader: async () => {
-      return redirect("https://kyle-silver.github.io/blog/clocks");
-    },
+    element: <RedirectOnNotFound />,
   },
 ]);
 
