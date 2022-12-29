@@ -1,6 +1,6 @@
 import { Concentric } from "./Concentric/Concentric";
 import { Timescale } from "./Timescale/Timescale";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 
 import "./css/Concentric.css";
 import "./css/ConcentricScaling.css";
@@ -15,6 +15,12 @@ const router = createHashRouter([
   {
     path: "concentric",
     element: <Concentric />,
+  },
+  {
+    path: "*",
+    loader: async () => {
+      return redirect("https://kyle-silver.github.io/blog/clocks");
+    },
   },
 ]);
 
