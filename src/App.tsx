@@ -1,19 +1,19 @@
 import { Concentric } from "./Concentric/Concentric";
 import { Timescale } from "./Timescale/Timescale";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 
 import "./css/Concentric.css";
 import "./css/ConcentricScaling.css";
 import "./css/Timescale.css";
 import "./css/TimescaleScaling.css";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
-    path: "/timescale",
+    path: "timescale",
     element: <Timescale />,
   },
   {
-    path: "/concentric",
+    path: "concentric",
     element: <Concentric />,
   },
 ]);
