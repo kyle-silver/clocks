@@ -114,7 +114,7 @@ const SecondsWheel: React.FC<WheelProps> = ({ rotations }) => {
   const elements = Array(60)
     .fill(0)
     .map((_, index) => {
-      return <SecondsElement value={index} />;
+      return <SecondsElement value={index} key={`seconds-wheel-${index}`} />;
     });
   return (
     <RevolutionAnimation rotations={rotations} translation={"--cc-second-wheel-displacement"}>
@@ -140,7 +140,7 @@ const MinuteWheel: React.FC<WheelProps> = ({ rotations }) => {
   const elements = Array(60)
     .fill(0)
     .map((_, index) => {
-      return <MinutesElement value={index} />;
+      return <MinutesElement value={index} key={`minute-wheel-${index}`} />;
     });
   return (
     <RevolutionAnimation rotations={rotations} translation={"--cc-minute-wheel-displacement"}>
@@ -172,7 +172,7 @@ const HourWheel: React.FC<{}> = () => {
   const elements = Array(60)
     .fill(0)
     .map((_, index) => {
-      return <HourElement value={index + 1} />;
+      return <HourElement value={index + 1} key={`hour-wheel-${index + 1}`} />;
     });
   return <div className="cc-hour-wheel">{elements}</div>;
 };

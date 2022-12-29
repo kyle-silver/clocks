@@ -3,7 +3,6 @@ import { Timescale } from "./Timescale/Timescale";
 import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 
 import "./css/Concentric.css";
-import "./css/ConcentricScaling.css";
 import "./css/Timescale.css";
 import "./css/TimescaleScaling.css";
 

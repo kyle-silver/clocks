@@ -1,22 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap");
 
 :root {
+  --cc-hour-wheel-radius: -45vmin;
+  --cc-minute-wheel-radius: -32vmin;
+  --cc-second-wheel-radius: -19.45vmin;
   --cc-second-wheel-displacement: calc(var(--cc-hour-wheel-radius) * 0.33);
   --cc-minute-wheel-displacement: calc(var(--cc-hour-wheel-radius) * 0.16);
   --cc-hand-radius: calc(calc(var(--cc-hour-wheel-radius) * 1.05) - 10px);
   --cc-concentric-hand-length: calc(var(--cc-hour-wheel-radius) * -0.4);
-  --cc-tick-width: 20px;
+  --cc-inner-wheel-font-size: 4vmin;
+  --cc-hour-wheel-font-size: 7vmin;
+  --cc-tick-width: 1.5vmin;
+  --cc-hand-thickness: 3px;
 }
 
 .cc-clock {
   margin: 0;
   position: absolute;
-  top: 47%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: "Raleway", sans-serif;
   font-size: var(--cc-inner-wheel-font-size);
-  display: block;
 }
 
 .cc-clock-element {
