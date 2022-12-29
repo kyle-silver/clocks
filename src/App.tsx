@@ -4,7 +4,6 @@ import { createHashRouter, redirect, RouterProvider } from "react-router-dom";
 
 import "./css/Concentric.css";
 import "./css/Timescale.css";
-import "./css/TimescaleScaling.css";
 
 const router = createHashRouter([
   {

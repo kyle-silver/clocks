@@ -1,9 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap");
 
+:root {
+  --ts-hour-wheel-radius: -47vmin;
+  --ts-minute-wheel-radius: -33vmin;
+  --ts-seconds-wheel-radius: -25vmin;
+  --ts-inner-wheel-font-size: 4vmin;
+  --ts-hour-wheel-font-size: 9vmin;
+  --ts-tick-width: 1.5vmin;
+  --ts-hand-thickness: 3px;
+  --ts-hand-length: calc(47vmin + 3px);
+}
+
 .ts-clock {
   margin: 0;
   position: absolute;
-  top: 47%;
+  top: 49%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: "Raleway", sans-serif;
