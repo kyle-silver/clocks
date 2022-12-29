@@ -19,8 +19,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  // return <Timescale />;
-  // return <Concentric />;
   return <RouterProvider router={router} />;
 }
 
